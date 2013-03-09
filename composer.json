@@ -1,5 +1,5 @@
 {
-    "name": "ddelrio1986/NeoNinjaLib",
+    "name": "ddelrio1986/neo-ninja-lib",
     "description": "Library that provides a Doctrine2 ready service layer to a ZF2 application.",
     "license": "BSD-3-Clause",
     "keywords": [
