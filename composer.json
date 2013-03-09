@@ -8,7 +8,8 @@
     ],
     "autoload": {
         "psr-0": {
-            "NeoNinjaLib": "src/"
+            "NeoNinjaLib\\": "src/",
+            "NeoNinjaLibTest\\": "tests/"
         }
     },
     "minimum-stability": "dev",
