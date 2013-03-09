@@ -2,6 +2,9 @@
 
 namespace NeoNinjaLib;
 
+use Zend\Loader\AutoloaderFactory;
+use Zend\Loader\StandardAutoloader;
+
 class Module
 {
     public function getAutoloaderConfig()
