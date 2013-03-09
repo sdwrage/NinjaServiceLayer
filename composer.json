@@ -1,0 +1,20 @@
+{
+    "name": "ddelrio1986/neoninjalib",
+    "description": "Library that provides a Doctrine2 ready service layer to a ZF2 application.",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "zf2",
+        "doctrine2"
+    ],
+    "autoload": {
+        "psr-0": {
+            "NeoNinjaLib": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "dev-master",
+        "doctrine/doctrine-orm-module": "dev-master"
+    }
+}
