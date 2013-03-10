@@ -1,10 +1,27 @@
 {
     "name": "ddelrio1986/neo-ninja-lib",
     "description": "Library that provides a Doctrine2 ready service layer to a ZF2 application.",
-    "license": "BSD-3-Clause",
+    "type": "library",
+    "homepage": "https://github.com/ddelrio1986/neo-ninja-lib",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Del Rio",
+            "email": "jesusfreakdelrio+neoninjalib@gmail.com",
+            "homepage": "https://github.com/ddelrio1986",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "jesusfreakdelrio+neoninjalib@gmail.com",
+        "issues": "https://github.com/ddelrio1986/neo-ninja-lib/issues",
+        "wiki": "https://github.com/ddelrio1986/neo-ninja-lib/wiki",
+        "source": "https://github.com/ddelrio1986/neo-ninja-lib"
+    },
     "keywords": [
         "zf2",
-        "doctrine2"
+        "doctrine2",
+        "scaffold"
     ],
     "autoload": {
         "psr-0": {
