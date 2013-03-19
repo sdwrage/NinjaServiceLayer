@@ -1,6 +1,6 @@
 <?php
 
-namespace NeoNinjaLib;
+namespace NinjaDoctrine2ServiceLayer;
 
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
@@ -27,7 +27,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'DomainServiceLoader' => 'NeoNinjaLib\ServiceManager\DomainServiceLoaderFactory',
+                'DomainServiceLoader' => 'NinjaDoctrine2ServiceLayer\ServiceManager\DomainServiceLoaderFactory',
             ),
         );
     }
