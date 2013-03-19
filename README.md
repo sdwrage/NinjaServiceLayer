@@ -1,4 +1,4 @@
-NeoNinjaLib
------------
+NinjaDoctrine2ServiceLayer
+--------------------------
 
-Library that provides a Doctrine2 ready service layer to a ZF2 application.
+This is a ZF2 module that will provide a Doctrine2 service layer.
