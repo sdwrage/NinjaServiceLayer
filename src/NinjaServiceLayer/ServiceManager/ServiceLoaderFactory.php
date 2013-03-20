@@ -44,7 +44,7 @@ class DomainServiceLoaderFactory implements FactoryInterface
         // Create our service manager that has some invokables for the domain services.
         $config = $serviceLocator->get('Configuration');
         $domainServiceManagerConfig = new Config(
-            isset($config['domain_services']) ? $config['domain_services'] : array()
+            isset($config['ninja_services']) ? $config['ninja_services'] : array()
         );
         $domainServiceManager = new ServiceManager($domainServiceManagerConfig);
 
