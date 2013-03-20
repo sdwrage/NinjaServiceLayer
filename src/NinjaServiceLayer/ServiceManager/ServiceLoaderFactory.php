@@ -24,7 +24,7 @@ use NinjaServiceLayer\ServiceManager\EntityManagerAwareInterface;
  * @author Daniel Del Rio <daniel@aelearn.com>
  * @package NinjaServiceLayer_ServiceManager
  */
-class DomainServiceLoaderFactory implements FactoryInterface
+class ServiceLoaderFactory implements FactoryInterface
 {
 
     /**
