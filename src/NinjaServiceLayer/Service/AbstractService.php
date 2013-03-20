@@ -50,7 +50,8 @@ abstract class AbstractService implements ServiceLocatorAwareInterface, EntityMa
      * Set Service Locator
      *
      * Set the provided service locator to a property.
-     *
+
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
      * @param ServiceLocatorInterface $serviceLocator The service locator to store.
      * @return AbstractService Returns the service to allow for method chaining.
      */
@@ -60,11 +61,28 @@ abstract class AbstractService implements ServiceLocatorAwareInterface, EntityMa
         return $this;
     }
 
+    /**
+     * Get Service Locator
+     *
+     * Get the service locator.
+     *
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @return ServiceLocatorInterface The service locator.
+     */
     public function getServiceLocator()
     {
         return $this->serviceLocator;
     }
 
+    /**
+     * Set Entity Manager
+     *
+     * Set the Doctrine2 entity manager to a property.
+     *
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @param EntityManager $entityManager The Doctrine2 entity manager.
+     * @return AbstractService Returns the service to allow for method chaining.
+     */
     public function setEntityManager(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -72,13 +90,27 @@ abstract class AbstractService implements ServiceLocatorAwareInterface, EntityMa
     }
 
     /**
-     * @return EntityManager
+     * Get Entity Manager
+     *
+     * Get the Doctrine2 entity manager.
+     *
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @return EntityManager The Doctrine2 entity manager.
      */
     public function getEntityManager()
     {
         return $this->entityManager;
     }
 
+    /**
+     * Get Service
+     *
+     * Get the service specified.
+     *
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @param string $name The name of the service to return.
+     * @return AbstractService The service that was asked for.
+     */
     public function getService($name)
     {
         $manager = $this->getServiceLocator()->get('ServiceLoader');

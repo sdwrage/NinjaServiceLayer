@@ -1,15 +1,43 @@
 <?php
+/**
+ * Service Loader Factory
+ *
+ * This is a factory for loading the services.
+ *
+ * @author Daniel Del Rio <daniel@aelearn.com>
+ * @package NinjaServiceLayer_ServiceManager
+ */
 
-namespace NeoNinjaLib\ServiceManager;
+namespace NinjaServiceLayer\ServiceManager;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
-use NeoNinjaLib\ServiceManager\EntityManagerAwareInterface;
+use NinjaServiceLayer\ServiceManager\EntityManagerAwareInterface;
 
+/**
+ * Service Loader Factory
+ *
+ * This is a factory for loading the services.
+ *
+ * @author Daniel Del Rio <daniel@aelearn.com>
+ * @package NinjaServiceLayer_ServiceManager
+ */
 class DomainServiceLoaderFactory implements FactoryInterface
 {
+
+    /**
+     * Create Service
+     *
+     * This method is demanded by FactoryInterface. We use it to add our own peering service manager to ZF2's service
+     * manager. Our peering service manager will add an initializer that will inject and services which implement the
+     * EntityManagerAwareInterface with Doctrine2's entity manager.
+     *
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @param ServiceLocatorInterface $serviceLocator The ZF2 service locator.
+     * @return ServiceManager Return the peering service manager.
+     */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
 
