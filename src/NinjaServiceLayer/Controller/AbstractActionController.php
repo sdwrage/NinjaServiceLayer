@@ -2,8 +2,8 @@
 /**
  * Abstract Action Controller
  *
- * This is an abstract class that all controllers can extend. It will endow the controller with a way to get one of your
- * domain services.
+ * This is an abstract class that all controllers can extend. It will endow the controller with ways to make use of the
+ * service layer.
  *
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
  * @package NinjaServiceLayer_Controller
@@ -16,8 +16,8 @@ use Zend\Mvc\Controller\AbstractActionController as ZendAbstractActionController
 /**
  * Abstract Action Controller
  *
- * This is an abstract class that all controllers can extend. It will endow the controller with a way to get one of your
- * domain services.
+ * This is an abstract class that all controllers can extend. It will endow the controller with ways to make use of the
+ * service layer.
  *
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
  * @package NinjaServiceLayer_Controller
@@ -26,17 +26,17 @@ abstract class AbstractActionController extends ZendAbstractActionController
 {
 
     /**
-     * Get Domain Service
+     * Get Service
      *
-     * This method is used to get the domain service specified by the service name provided.
+     * This method is used to get the service specified by the service name provided.
      *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @param string $serviceName The name of the service to get.
-     * @return mixed
+     * @param string $name The name of the service to get.
+     * @return mixed NinjaServiceLayer\Service\AbstractService The service that was asked for.
      */
-    public function getDomainService($serviceName)
+    public function getService($name)
     {
-        $domainServiceLoader = $this->getServiceLocator()->get('DomainServiceLoader');
-        return $domainServiceLoader->get($serviceName);
+        $serviceLoader = $this->getServiceLocator()->get('ServiceLoader');
+        return $serviceLoader->get($name);
     }
 }
