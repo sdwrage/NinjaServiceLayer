@@ -32,7 +32,7 @@ abstract class AbstractActionController extends ZendAbstractActionController
      *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
      * @param string $name The name of the service to get.
-     * @return mixed NinjaServiceLayer\Service\AbstractService The service that was asked for.
+     * @return NinjaServiceLayer\Service\AbstractService The service that was asked for.
      */
     public function getService($name)
     {
