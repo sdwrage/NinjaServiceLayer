@@ -55,21 +55,4 @@ class Module
     {
         return include __DIR__ . '/../../config/module.config.php';
     }
-
-    /**
-     * Get Service Config
-     *
-     * Get the service configuration for this module.
-     *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @return array The service configuration for this module.
-     */
-    public function getServiceConfig()
-    {
-        return array(
-            'factories' => array(
-                'ServiceLoader' => 'NinjaServiceLayer\ServiceManager\ServiceLoaderFactory',
-            ),
-        );
-    }
 }

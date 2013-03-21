@@ -5,7 +5,7 @@
  * This serves as a base class for all services in the service layer.
  *
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
- * @package NinjaServiceLayer_Service
+ * @package NinjaServiceLayer\Service
  */
 
 namespace NinjaServiceLayer\Service;
@@ -21,7 +21,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  * This serves as a base class for all services in the service layer.
  *
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
- * @package NinjaServiceLayer_Service
+ * @package NinjaServiceLayer\Service
  */
 abstract class AbstractService implements ServiceLocatorAwareInterface, EntityManagerAwareInterface
 {
@@ -50,7 +50,7 @@ abstract class AbstractService implements ServiceLocatorAwareInterface, EntityMa
      * Set Service Locator
      *
      * Set the provided service locator to a property.
-
+     *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
      * @param ServiceLocatorInterface $serviceLocator The service locator to store.
      * @return AbstractService Returns the service to allow for method chaining.
@@ -100,20 +100,5 @@ abstract class AbstractService implements ServiceLocatorAwareInterface, EntityMa
     public function getEntityManager()
     {
         return $this->entityManager;
-    }
-
-    /**
-     * Get Service
-     *
-     * Get the service specified.
-     *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @param string $name The name of the service to return.
-     * @return AbstractService The service that was asked for.
-     */
-    public function getService($name)
-    {
-        $manager = $this->getServiceLocator()->get('ServiceLoader');
-        return $manager->get($name);
     }
 }

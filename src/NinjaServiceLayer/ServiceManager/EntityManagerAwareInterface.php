@@ -5,7 +5,7 @@
  * This is an interface for classes that are aware of Doctrine2's entity manager.
  *
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
- * @package NinjaServiceLayer_ServiceManager
+ * @package NinjaServiceLayer\ServiceManager
  */
 
 namespace NinjaServiceLayer\ServiceManager;
@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityManager;
  * This is an interface for classes that are aware of Doctrine2's entity manager.
  *
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
- * @package NinjaServiceLayer_ServiceManager
+ * @package NinjaServiceLayer\ServiceManager
  */
 interface EntityManagerAwareInterface
 {

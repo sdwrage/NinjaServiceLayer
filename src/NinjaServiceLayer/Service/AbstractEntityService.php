@@ -5,13 +5,13 @@
  * This is an abstract class that any entity service which is used for a specific entity should extend.
  *
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
- * @package NinjaServiceLayer_Service
+ * @package NinjaServiceLayer\Service
  */
 
 namespace NinjaServiceLayer\Service;
 
-use NinjaServiceLayer\Model\AbstractEntityModel;
 use NinjaServiceLayer\Service\AbstractService;
+use NinjaServiceLayer\Entity\AbstractEntity;
 
 /**
  * Abstract Entity Service
@@ -19,7 +19,7 @@ use NinjaServiceLayer\Service\AbstractService;
  * This is an abstract class that any entity service which is used for a specific entity should extend.
  *
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
- * @package NinjaServiceLayer_Service
+ * @package NinjaServiceLayer\Service
  */
 class AbstractEntityService extends AbstractService
 {
@@ -27,20 +27,20 @@ class AbstractEntityService extends AbstractService
     /**
      * Entity
      *
-     * This is the entity model that this entity model service is used with.
+     * The name of the entity that this entity service is used with.
      *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @var string The name of the entity model that this entity service is used with.
+     * @var string The name of the entity that this entity service is used with.
      */
     protected $entity = '';
 
     /**
      * Get All
      *
-     * Get all entities for the entity model that this entity services is used with.
+     * Get all entities.
      *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @return AbstractEntityModel[] Returns an array of entity models.
+     * @return AbstractEntity[] An array of all the entities.
      */
     public function getAll()
     {
@@ -52,11 +52,11 @@ class AbstractEntityService extends AbstractService
     /**
      * Get By ID
      *
-     * Get an entity model by the provided ID.
+     * Get the entity with the specified ID.
      *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @param int $id The ID of the entity model to get.
-     * @return AbstractEntityModel The entity model.
+     * @param int $id The ID of the entity that should be gotten.
+     * @return AbstractEntity The entity with the specified ID.
      * @throws \Exception Throw an exception if the entity wasn't found.
      */
     public function getById($id)
@@ -74,13 +74,13 @@ class AbstractEntityService extends AbstractService
     /**
      * Persist
      *
-     * Persists the provided model and flushes the current transaction.
+     * Persists the provided entity.
      *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @param AbstractEntityModel $model The entity model to persist.
+     * @param AbstractEntity $model The entity to persist.
      * @return AbstractEntityService Returns the entity service to allow for method chaining.
      */
-    public function persist(AbstractEntityModel $model)
+    public function persist(AbstractEntity $model)
     {
         $this->getEntityManager()->persist($model);
         $this->getEntityManager()->flush();
@@ -90,13 +90,13 @@ class AbstractEntityService extends AbstractService
     /**
      * Remove
      *
-     * Removes the provided entity model from persistent storage and flushes the current transaction.
+     * Removes the provided entity from persistent storage.
      *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @param AbstractEntityModel $model The model entity to remove.
-     * @return AbstractEntityService Returns the entity service to allow for method chaining.
+     * @param AbstractEntity $model The entity to remove.
+     * @return AbstractEntityService Returns the entity allow for method chaining.
      */
-    public function remove(AbstractEntityModel $model)
+    public function remove(AbstractEntity $model)
     {
         $this->getEntityManager()->remove($model);
         $this->getEntityManager()->flush();
@@ -106,13 +106,13 @@ class AbstractEntityService extends AbstractService
     /**
      * Get New Entity
      *
-     * Get a new instance of the entity model that this entity service is used for.
+     * Get a new instance of the entity that this entity service is used for.
      *
      * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @return AbstractEntityModel A new instance of the entity model that this entity service is used for.
+     * @return AbstractEntity A new instance of the entity that this entity service is used for.
      */
-    public function getNewEntityModel()
+    public function getNewEntity()
     {
-        return new $this->entity;
+        return $this->getServiceLocator()->get($this->entity);
     }
 }
