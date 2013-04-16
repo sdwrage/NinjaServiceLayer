@@ -10,9 +10,6 @@
 
 namespace NinjaServiceLayer;
 
-use Zend\Loader\AutoloaderFactory;
-use Zend\Loader\StandardAutoloader;
-
 /**
  * Module
  *
@@ -35,8 +32,11 @@ class Module
     public function getAutoloaderConfig()
     {
         return array(
-            AutoloaderFactory::STANDARD_AUTOLOADER => array(
-                StandardAutoloader::LOAD_NS => array(
+            'Zend\Loader\ClassMapAutoloader' => array(
+                __DIR__ . '/../../autoload_classmap.php',
+            ),
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
                     __NAMESPACE__ => __DIR__,
                 ),
             ),
