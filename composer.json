@@ -33,6 +33,7 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "dev-master",
-        "doctrine/doctrine-orm-module": "dev-master"
+        "doctrine/doctrine-orm-module": "dev-master",
+        "beberlei/DoctrineExtensions": "dev-master"
     }
 }
