@@ -44,9 +44,9 @@ class AbstractEntityService extends AbstractService
      */
     public function getAll()
     {
-        return $this->getEntityManager()
-                ->createQuery('SELECT e FROM ' . $this->entity . ' e')
-                ->getResult();
+        return $this->_em
+                    ->createQuery('SELECT e FROM ' . $this->entity . ' e')
+                    ->getResult();
     }
 
     /**
@@ -61,10 +61,10 @@ class AbstractEntityService extends AbstractService
      */
     public function getById($id)
     {
-        $entities = $this->getEntityManager()
-                ->createQuery('SELECT e FROM ' . $this->entity . ' e WHERE e.id = :id')
-                ->setParameter('id', $id)
-                ->getResult();
+        $entities = $this->_em
+                         ->createQuery('SELECT e FROM ' . $this->entity . ' e WHERE e.id = :id')
+                         ->setParameter('id', $id)
+                         ->getResult();
         if (!count($entities)) {
             throw new \Exception($this->entity . ' not found with id: ' . $id);
         }
@@ -82,8 +82,8 @@ class AbstractEntityService extends AbstractService
      */
     public function persist(AbstractEntity $model)
     {
-        $this->getEntityManager()->persist($model);
-        $this->getEntityManager()->flush();
+        $this->_em->persist($model);
+        $this->_em->flush();
         return $this;
     }
 
@@ -98,8 +98,8 @@ class AbstractEntityService extends AbstractService
      */
     public function remove(AbstractEntity $model)
     {
-        $this->getEntityManager()->remove($model);
-        $this->getEntityManager()->flush();
+        $this->_em->remove($model);
+        $this->_em->flush();
         return $this;
     }
 
