@@ -5,14 +5,14 @@ namespace NinjaServiceLayer\Form;
 use Zend\Form\Form;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use DoctrineModule\Persistence\ObjectManagerAwareInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
+use NinjaServiceLayer\ServiceManager\EntityManagerAwareInterface;
 
-abstract class AbstractForm extends Form implements ServiceLocatorAwareInterface, ObjectManagerAwareInterface
+abstract class AbstractForm extends Form implements ServiceLocatorAwareInterface, EntityManagerAwareInterface
 {
     protected $serviceLocator;
 
-    protected $objectManager;
+    protected $entityManager;
 
     public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
@@ -24,13 +24,13 @@ abstract class AbstractForm extends Form implements ServiceLocatorAwareInterface
         return $this->serviceLocator;
     }
 
-    public function setObjectManager(ObjectManager $objectManager)
+    public function setEntityManager(EntityManager $entityManager)
     {
-        $this->objectManager = $objectManager;
+        $this->entityManager = $entityManager;
     }
 
-    public function getObjectManager()
+    public function getEntityManager()
     {
-        return $this->objectManager;
+        return $this->entityManager;
     }
 }
