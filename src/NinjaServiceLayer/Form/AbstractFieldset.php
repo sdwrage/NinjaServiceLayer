@@ -4,11 +4,11 @@ namespace NinjaServiceLayer\Form;
 
 use Doctrine\ORM\EntityManager;
 use NinjaServiceLayer\ServiceManager\EntityManagerAwareInterface;
-use Zend\Form\Form;
+use Zend\Form\Fieldset;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-abstract class AbstractForm extends Form implements ServiceLocatorAwareInterface, EntityManagerAwareInterface
+abstract class AbstractFieldset extends Fieldset implements ServiceLocatorAwareInterface, EntityManagerAwareInterface
 {
     protected $serviceLocator;
 
