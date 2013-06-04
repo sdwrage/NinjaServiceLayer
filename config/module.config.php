@@ -16,7 +16,7 @@ use NinjaServiceLayer\Entity\AbstractEntity;
 return array(
     'service_manager' => array(
         'initializers' => array(
-            'ninja_service_layer' => function ($service, $serviceManager) {
+            'NinjaEntityManagerAware' => function ($service, $serviceManager) {
                 if ($service instanceof EntityManagerAwareInterface) {
                     $service->setEntityManager($serviceManager->get('Doctrine\ORM\EntityManager'));
                 }
@@ -25,10 +25,13 @@ return array(
                 }
             }
         ),
+        'abstract_factories' => array(
+            'NinjaServiceLayer\ServiceManager\EntityServiceAbstractFactory',
+        ),
     ),
     'form_elements' => array(
         'initializers' => array(
-            'ninja_service_layer' => function ($service, $formElementManager) {
+            'NinjaFormEntityManagerAware' => function ($service, $formElementManager) {
                 if ($service instanceof EntityManagerAwareInterface) {
                     $service->setEntityManager(
                         $formElementManager->getServiceLocator()->get('Doctrine\ORM\EntityManager')
