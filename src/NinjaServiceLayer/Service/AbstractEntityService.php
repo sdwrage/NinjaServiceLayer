@@ -12,6 +12,7 @@ namespace NinjaServiceLayer\Service;
 
 use NinjaServiceLayer\Service\AbstractService;
 use NinjaServiceLayer\Entity\AbstractEntity;
+use Zend\Form\Form;
 
 /**
  * Abstract Entity Service
@@ -114,5 +115,14 @@ class AbstractEntityService extends AbstractService
     public function getNewEntity()
     {
         return $this->getServiceLocator()->get($this->entity);
+    }
+
+    public function bindEntityToForm(Form $form, AbstractEntity $entity = null)
+    {
+        if (null === $entity) {
+            $entity = $this->getNewEntity();
+        }
+        $form->bind($entity);
+        return $entity;
     }
 }
