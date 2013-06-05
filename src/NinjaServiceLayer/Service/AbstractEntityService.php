@@ -72,6 +72,19 @@ class AbstractEntityService extends AbstractService
         return $entities[0];
     }
 
+    public function getByIds(array $ids)
+    {
+        $query = 'SELECT e FROM ' . $this->entity . ' e WHERE e.id = ' . array_shift($ids);
+        foreach ($ids as $id) {
+            $query .= ' OR e.id = ' . $id;
+        }
+
+        $entities = $this->_em
+                         ->createQuery($query)
+                         ->getResult();
+        return $entities;
+    }
+
     /**
      * Persist
      *
