@@ -10,9 +10,11 @@
 
 namespace NinjaServiceLayer\Service;
 
-use NinjaServiceLayer\Service\AbstractService;
+use Doctrine\ORM\EntityRepository;
 use NinjaServiceLayer\Entity\AbstractEntity;
 use Zend\Form\Form;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Abstract Entity Service
@@ -22,7 +24,7 @@ use Zend\Form\Form;
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
  * @package NinjaServiceLayer\Service
  */
-class AbstractEntityService extends AbstractService
+class AbstractEntityService extends EntityRepository implements ServiceLocatorAwareInterface
 {
 
     /**
@@ -34,6 +36,44 @@ class AbstractEntityService extends AbstractService
      * @var string The name of the entity that this entity service is used with.
      */
     protected $entity = '';
+
+    /**
+     * Service Locator
+     *
+     * The ZF2 service locator.
+     *
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @var ServiceLocatorInterface The ZF2 service locator.
+     */
+    protected $serviceLocator;
+
+    /**
+     * Set Service Locator
+     *
+     * Set the provided service locator to a property.
+     *
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @param ServiceLocatorInterface $serviceLocator The service locator to store.
+     * @return AbstractService Returns the service to allow for method chaining.
+     */
+    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->serviceLocator = $serviceLocator;
+        return $this;
+    }
+
+    /**
+     * Get Service Locator
+     *
+     * Get the service locator.
+     *
+     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @return ServiceLocatorInterface The service locator.
+     */
+    public function getServiceLocator()
+    {
+        return $this->serviceLocator;
+    }
 
     /**
      * Get All

@@ -10,7 +10,6 @@
 
 namespace NinjaServiceLayer\Service;
 
-use Doctrine\ORM\EntityRepository;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -22,7 +21,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
  * @package NinjaServiceLayer\Service
  */
-abstract class AbstractService extends EntityRepository implements ServiceLocatorAwareInterface
+abstract class AbstractService implements ServiceLocatorAwareInterface
 {
 
     /**
