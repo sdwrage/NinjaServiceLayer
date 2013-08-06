@@ -80,14 +80,26 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      *
      * Get all entities.
      *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
+     * @param array $order The order specification. Should have two keys: column, direction
      * @return AbstractEntity[] An array of all the entities.
      */
-    public function getAll()
+    public function getAll(array $order = null)
     {
-        return $this->_em
-                    ->createQuery('SELECT e FROM ' . $this->entity . ' e')
-                    ->getResult();
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('e')
+           ->from($this->entity, 'e');
+
+        if (null !== $order) {
+            if (array_key_exists('column', $order)) {
+                $direction = 'ASC';
+                if (array_key_exists('direction', $order)) {
+                    $direction = $order['direction'];
+                }
+                $qb->orderBy($order['column'], $direction);
+            }
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     /**
@@ -114,9 +126,9 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
 
     public function getByIds(array $ids)
     {
-        $query = 'SELECT e FROM ' . $this->entity . ' e WHERE e.id = ' . array_shift($ids);
+        $query = 'SELECT e FROM ' . $this->entity . ' e WHERE e.id = ' . (int)array_shift($ids);
         foreach ($ids as $id) {
-            $query .= ' OR e.id = ' . $id;
+            $query .= ' OR e.id = ' . (int)$id;
         }
 
         $entities = $this->_em
