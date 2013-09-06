@@ -4,8 +4,8 @@
  *
  * This is an abstract class that any entity service which is used for a specific entity should extend.
  *
- * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
  * @package NinjaServiceLayer\Service
+ * @filesource
  */
 
 namespace NinjaServiceLayer\Service;
@@ -21,58 +21,52 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  *
  * This is an abstract class that any entity service which is used for a specific entity should extend.
  *
- * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
  * @package NinjaServiceLayer\Service
  */
 class AbstractEntityService extends EntityRepository implements ServiceLocatorAwareInterface
 {
 
     /**
-     * Entity
-     *
-     * The name of the entity that this entity service is used with.
-     *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @var string The name of the entity that this entity service is used with.
-     */
-    protected $entity = '';
-
-    /**
      * Service Locator
      *
      * The ZF2 service locator.
      *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
      * @var ServiceLocatorInterface The ZF2 service locator.
      */
     protected $serviceLocator;
 
     /**
-     * Set Service Locator
+     * Bind Entity To Form
      *
-     * Set the provided service locator to a property.
+     * Bind the specified entity to the specified form. If no entity was specified then a new one will be created.
      *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @param ServiceLocatorInterface $serviceLocator The service locator to store.
-     * @return AbstractService Returns the service to allow for method chaining.
+     * @param Form $form The form to bind to.
+     * @param null|AbstractEntity $entity The entity to bind to the form.
+     * @return AbstractEntity The entity that was bound to the form.
      */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
+    public function bindEntityToForm(Form $form, AbstractEntity $entity = null)
     {
-        $this->serviceLocator = $serviceLocator;
-        return $this;
+        if (null === $entity) {
+            $entity = $this->getNewEntity();
+        }
+        $form->bind($entity);
+        return $entity;
     }
 
     /**
-     * Get Service Locator
+     * Delete By ID
      *
-     * Get the service locator.
+     * This will delete an entity by ID provided.
      *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @return ServiceLocatorInterface The service locator.
+     * @param int $id The ID of the entity to delete.
+     * @return AbstractEntity The entity that was deleted.
      */
-    public function getServiceLocator()
+    public function deleteById($id)
     {
-        return $this->serviceLocator;
+        $entity = $this->getById($id);
+        $entity->setDeleted(1);
+        $this->persist($entity);
+        return $entity;
     }
 
     /**
@@ -107,23 +101,33 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      *
      * Get the entity with the specified ID.
      *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
      * @param int $id The ID of the entity that should be gotten.
      * @return AbstractEntity The entity with the specified ID.
      * @throws \Exception Throw an exception if the entity wasn't found.
      */
     public function getById($id)
     {
-        $entities = $this->_em
-                         ->createQuery('SELECT e FROM ' . $this->entity . ' e WHERE e.id = :id')
-                         ->setParameter('id', $id)
-                         ->getResult();
+        $query = $this->_em
+            ->createQuery('SELECT e FROM ' . $this->entity . ' e WHERE e.id = :id')
+            ->setParameter('id', $id);
+
+        $entities = $query->getResult();
+
         if (!count($entities)) {
             throw new \Exception($this->entity . ' not found with id: ' . $id);
         }
+
         return $entities[0];
     }
 
+    /**
+     * Get By IDs
+     *
+     * Get a list of entities by their ID.
+     *
+     * @param array $ids The IDs of the entities to get.
+     * @return AbstractEntity[] The entities.
+     */
     public function getByIds(array $ids)
     {
         $query = 'SELECT e FROM ' . $this->entity . ' e WHERE e.id = ' . (int)array_shift($ids);
@@ -138,11 +142,67 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
     }
 
     /**
+     * Get New Entity
+     *
+     * Get a new instance of the entity that this entity service is used for.
+     *
+     * @return AbstractEntity A new instance of the entity that this entity service is used for.
+     */
+    public function getNewEntity()
+    {
+        return $this->getServiceLocator()->get($this->entity);
+    }
+
+    /**
+     * Get Not Deleted
+     *
+     * Gets all not deleted entities, ordered by id if not specified.
+     *
+     * @param string $sort The ordering expression.
+     * @param string $order The ordering direction.
+     * @return AbstractEntity[] An array of all not deleted entities.
+     */
+    public function getNotDeleted($sort = 'id', $order = 'ASC')
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('e')
+            ->from($this->entity, 'e')
+            ->where($qb->expr()->neq('e.deleted', true))
+            ->orderBy('e.'.$sort, $order);
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Get Not Deleted By User ID
+     *
+     * Get the not deleted role assignments for the specified user.
+     *
+     * @param array $params The parameters to search by.
+     * @param array $order The order for the results.
+     * @return RoleAssignmentEntity[] The role assignments for the specified user.
+     */
+    public function getNotDeletedBy(array $params, array $order)
+    {
+        return $this->findBy(array_merge(array('deleted' => false), $params), $order);
+    }
+
+    /**
+     * Get Service Locator
+     *
+     * Get the service locator.
+     *
+     * @return ServiceLocatorInterface The service locator.
+     */
+    public function getServiceLocator()
+    {
+        return $this->serviceLocator;
+    }
+
+    /**
      * Persist
      *
      * Persists the provided entity.
      *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
      * @param AbstractEntity $model The entity to persist.
      * @return AbstractEntityService Returns the entity service to allow for method chaining.
      */
@@ -158,7 +218,6 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      *
      * Removes the provided entity from persistent storage.
      *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
      * @param AbstractEntity $model The entity to remove.
      * @return AbstractEntityService Returns the entity allow for method chaining.
      */
@@ -170,24 +229,16 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
     }
 
     /**
-     * Get New Entity
+     * Set Service Locator
      *
-     * Get a new instance of the entity that this entity service is used for.
+     * Set the provided service locator to a property.
      *
-     * @author Daniel Del Rio <jesusfreakdelrio@gmail.com>
-     * @return AbstractEntity A new instance of the entity that this entity service is used for.
+     * @param ServiceLocatorInterface $serviceLocator The service locator to store.
+     * @return AbstractService Returns the service to allow for method chaining.
      */
-    public function getNewEntity()
+    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
-        return $this->getServiceLocator()->get($this->entity);
-    }
-
-    public function bindEntityToForm(Form $form, AbstractEntity $entity = null)
-    {
-        if (null === $entity) {
-            $entity = $this->getNewEntity();
-        }
-        $form->bind($entity);
-        return $entity;
+        $this->serviceLocator = $serviceLocator;
+        return $this;
     }
 }
