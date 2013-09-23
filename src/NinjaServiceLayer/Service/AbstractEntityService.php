@@ -208,6 +208,7 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      */
     public function persist(AbstractEntity $model)
     {
+        if (null === $model->getDateModified()) $model->setDateModified(new \DateTime());
         $this->_em->persist($model);
         $this->_em->flush();
         return $this;
