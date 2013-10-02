@@ -2,7 +2,7 @@
 /**
  * Abstract Entity
  *
- * This class can be used as a base class for all entities.
+ * A base class for all entities.
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
@@ -14,7 +14,7 @@ namespace NinjaServiceLayer\Entity;
 /**
  * Abstract Entity
  *
- * This class can be used as a base class for all entities.
+ * A base class for all entities.
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity

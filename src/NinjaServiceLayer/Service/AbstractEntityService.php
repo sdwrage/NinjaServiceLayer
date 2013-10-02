@@ -2,8 +2,10 @@
 /**
  * Abstract Entity Service
  *
- * This is an abstract class that any entity service which is used for a specific entity should extend.
+ * A base class for all entity services. An entity service is a special type of service that is intended to mainly work
+ * with a single entity.
  *
+ * @author Daniel Del Rio <daniel@aelearn.com>
  * @package NinjaServiceLayer\Service
  * @filesource
  */
@@ -19,8 +21,10 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 /**
  * Abstract Entity Service
  *
- * This is an abstract class that any entity service which is used for a specific entity should extend.
+ * A base class for all entity services. An entity service is a special type of service that is intended to mainly work
+ * with a single entity.
  *
+ * @author Daniel Del Rio <daniel@aelearn.com>
  * @package NinjaServiceLayer\Service
  */
 class AbstractEntityService extends EntityRepository implements ServiceLocatorAwareInterface
@@ -29,9 +33,8 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
     /**
      * Service Locator
      *
-     * The ZF2 service locator.
-     *
-     * @var ServiceLocatorInterface The ZF2 service locator.
+     * @author Daniel Del Rio <daniel@aelearn.com>
+     * @var ServiceLocatorInterface The service locator.
      */
     protected $serviceLocator;
 
@@ -40,6 +43,7 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      *
      * Bind the specified entity to the specified form. If no entity was specified then a new one will be created.
      *
+     * @author Daniel Del Rio <daniel@aelearn.com>
      * @param Form $form The form to bind to.
      * @param null|AbstractEntity $entity The entity to bind to the form.
      * @return AbstractEntity The entity that was bound to the form.
@@ -64,7 +68,8 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
     public function deleteById($id)
     {
         $entity = $this->getById($id);
-        $entity->setDeleted(1);
+        $entity->setDeleted(1)
+            ->setDateModified();
         $this->persist($entity);
         return $entity;
     }
@@ -79,20 +84,30 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      */
     public function getAll(array $order = null)
     {
+
+        // Begin building the query.
         $qb = $this->_em->createQueryBuilder();
         $qb->select('e')
-           ->from($this->entity, 'e');
+            ->from($this->entity, 'e')
+            ->where($qb->expr()->eq('e.deleted', ':deleted'));
 
+        // Add the order clause if needed.
         if (null !== $order) {
             if (array_key_exists('column', $order)) {
                 $direction = 'ASC';
-                if (array_key_exists('direction', $order)) {
+                if (array_key_exists('direction', $order) && 'DESC' === $order['direction']) {
                     $direction = $order['direction'];
                 }
                 $qb->orderBy($order['column'], $direction);
             }
         }
 
+        // Set the parameters.
+        $qb->setParameters(
+            array(
+                'deleted' => 0,
+            )
+        );
         return $qb->getQuery()->getResult();
     }
 
