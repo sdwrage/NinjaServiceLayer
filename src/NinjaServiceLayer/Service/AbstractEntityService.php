@@ -265,7 +265,7 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      * @param string $direction The direction to sort the entities in.
      * @return AbstractEntity[] The sorted entities.
      */
-    public static function sortEntitiesByProperty($entities, $property = 'id', $direction = 'ascending')
+    public static function sortEntitiesByProperty(&$entities, $property = 'id', $direction = 'ascending')
     {
 
         // Cleanse parameters.
