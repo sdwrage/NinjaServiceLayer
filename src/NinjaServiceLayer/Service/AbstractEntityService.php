@@ -279,8 +279,8 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
         usort(
             $entities,
             function ($a, $b) use ($property, $sortDirection) {
-                if ('descending' === $sortDirection) return strcmp($b->$property, $a->$property);
-                return strcmp($a->$property, $b->$property);
+                if ('descending' === $sortDirection) return strcasecmp($b->$property, $a->$property);
+                return strcasecmp($a->$property, $b->$property);
             }
         );
         return $entities;
