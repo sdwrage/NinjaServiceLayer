@@ -89,7 +89,7 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
         $qb = $this->_em->createQueryBuilder();
         $qb->select('e')
             ->from($this->entity, 'e')
-            ->where($qb->expr()->eq('e.deleted', ':deleted'));
+            ->where($qb->expr()->eq('e.deleted', ':deleted'))
             ->setParameters(
                 array(
                     'deleted' => 0,
