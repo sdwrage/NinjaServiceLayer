@@ -97,10 +97,6 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
             );
         $entities = $qb->getQuery()->getResult();
 
-        // Ensure that the sort parameter is a valid property of this entity.
-        $sort = (string)$sort;
-        if (!property_exists('\\' . $this->entity, $sort)) $sort = 'id';
-
         // Sort the entitites.
         usort(
             $entities,
