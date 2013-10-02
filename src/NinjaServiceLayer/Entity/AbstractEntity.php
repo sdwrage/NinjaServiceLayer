@@ -42,6 +42,7 @@ class AbstractEntity
      * property is always used just incase anthing needs to be done like lazy-loading.
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @throws \Exception If property to get doesn't exist.
      * @param string $propertyName The name of the property to get.
      * @return mixed The value of the property.
      */
@@ -62,8 +63,10 @@ class AbstractEntity
      * use a setter allowing us to perform any needed actions on the value before storing it.
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @throws \Exception If property to set doesn't exist.
      * @param string $propertyName The name of the property to set.
      * @param mixed $propertyValue The value to set to the property.
+     * @return self Returns itself to allow for a fluent interface.
      */
     public function __set($propertyName, $propertyValue)
     {
@@ -96,6 +99,14 @@ class AbstractEntity
         return $this;
     }
 
+    /**
+     * Get Array Copy
+     *
+     * Get an array representation of this instance.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @return array An array representation of this instance.
+     */
     public function getArrayCopy()
     {
         return get_object_vars($this);
