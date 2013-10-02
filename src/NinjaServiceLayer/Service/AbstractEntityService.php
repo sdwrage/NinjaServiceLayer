@@ -79,36 +79,36 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      *
      * Get all entities.
      *
-     * @param array $order The order specification. Should have two keys: column, direction
+     * @param string $sort The property to sort the courses by.
      * @return AbstractEntity[] An array of all the entities.
      */
-    public function getAll(array $order = null)
+    public function getAll($sort = 'id')
     {
 
-        // Begin building the query.
+        // Get the entities.
         $qb = $this->_em->createQueryBuilder();
         $qb->select('e')
             ->from($this->entity, 'e')
             ->where($qb->expr()->eq('e.deleted', ':deleted'));
+            ->setParameters(
+                array(
+                    'deleted' => 0,
+                )
+            );
+        $entities = $qb->getQuery()->getResult();
 
-        // Add the order clause if needed.
-        if (null !== $order) {
-            if (array_key_exists('column', $order)) {
-                $direction = 'ASC';
-                if (array_key_exists('direction', $order) && 'DESC' === $order['direction']) {
-                    $direction = $order['direction'];
-                }
-                $qb->orderBy($order['column'], $direction);
+        // Ensure that the sort parameter is a valid property of this entity.
+        $sort = (string)$sort;
+        if (!property_exists('\\' . $this->entity, $sort)) $sort = 'id';
+
+        // Sort the entitites.
+        usort(
+            $entities,
+            function ($a, $b) use ($sort) {
+                return strcmp($a->$sort, $b->$sort);
             }
-        }
-
-        // Set the parameters.
-        $qb->setParameters(
-            array(
-                'deleted' => 0,
-            )
         );
-        return $qb->getQuery()->getResult();
+        return $entities;
     }
 
     /**
