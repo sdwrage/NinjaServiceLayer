@@ -5,7 +5,7 @@
  * A base class for all entity services. An entity service is a special type of service that is intended to mainly work
  * with a single entity.
  *
- * @author Daniel Del Rio <daniel@aelearn.com>
+ * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Service
  * @filesource
  */
@@ -24,7 +24,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  * A base class for all entity services. An entity service is a special type of service that is intended to mainly work
  * with a single entity.
  *
- * @author Daniel Del Rio <daniel@aelearn.com>
+ * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Service
  */
 class AbstractEntityService extends EntityRepository implements ServiceLocatorAwareInterface
@@ -33,7 +33,7 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
     /**
      * Service Locator
      *
-     * @author Daniel Del Rio <daniel@aelearn.com>
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @var ServiceLocatorInterface The service locator.
      */
     protected $serviceLocator;
@@ -43,7 +43,7 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      *
      * Bind the specified entity to the specified form. If no entity was specified then a new one will be created.
      *
-     * @author Daniel Del Rio <daniel@aelearn.com>
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param Form $form The form to bind to.
      * @param null|AbstractEntity $entity The entity to bind to the form.
      * @return AbstractEntity The entity that was bound to the form.
@@ -79,11 +79,19 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
      *
      * Get all entities.
      *
-     * @param string $sort The property to sort the courses by.
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @param string $sortProperty The property to sort the courses by.
+     * @param string $sortDirection The direction to sort the entities in.
      * @return AbstractEntity[] An array of all the entities.
      */
-    public function getAll($sort = 'id')
+    public function getAll($sortProperty = 'id', $sortDirection = 'ascending')
     {
+
+        // Cleanse parameters.
+        $sortProperty = trim((string)$sortProperty);
+        if ('' === $sortProperty) $sortProperty = 'id';
+        $sortDirection = trim((string)$sortDirection);
+        if ('' === $sortDirection) $sortDirection = 'ascending';
 
         // Get the entities.
         $qb = $this->_em->createQueryBuilder();
@@ -96,15 +104,7 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
                 )
             );
         $entities = $qb->getQuery()->getResult();
-
-        // Sort the entitites.
-        usort(
-            $entities,
-            function ($a, $b) use ($sort) {
-                return strcmp($a->$sort, $b->$sort);
-            }
-        );
-        return $entities;
+        return $this->sortEntitiesByProperty($entities, $sortProperty, $sortDirection);
     }
 
     /**
@@ -252,5 +252,37 @@ class AbstractEntityService extends EntityRepository implements ServiceLocatorAw
     {
         $this->serviceLocator = $serviceLocator;
         return $this;
+    }
+
+    /**
+     * Sort Entities By Property
+     *
+     * Sort the provided entities by the provided property in the provided direction.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @param AbstractEntity[] $entities The entities to sort.
+     * @param string $property The property to sort by.
+     * @param string $direction The direction to sort the entities in.
+     * @return AbstractEntity[] The sorted entities.
+     */
+    public function sortEntitiesByProperty($entities, $property = 'id', $direction = 'ascending')
+    {
+
+        // Cleanse parameters.
+        $property = trim((string)$property);
+        if ('' === $property) $property = 'id';
+        $sortDirection = 'ascending';
+        if ('descending' === trim((string)$direction)) $sortDirection = 'descending';
+
+
+        // Sort the entities.
+        usort(
+            $entities,
+            function ($a, $b) use ($property, $sortDirection) {
+                if ('descending' === $sortDirection) return strcmp($b->$property, $a->$property);
+                return strcmp($a->$property, $b->$property);
+            }
+        );
+        return $entities;
     }
 }
