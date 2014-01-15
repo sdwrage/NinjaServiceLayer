@@ -42,7 +42,7 @@ class AbstractEntity
      */
     public function __construct(array $options = null)
     {
-        if (null !== $options && count($options) {
+        if (null !== $options && count($options)) {
             $this->setOptions($options);
         }
     }
