@@ -20,7 +20,7 @@
     },
     "keywords": [
         "zf2",
-        "doctrine2",
+        "doctrine2"
     ],
     "autoload": {
         "psr-0": {
