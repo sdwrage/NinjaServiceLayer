@@ -99,6 +99,7 @@ class AbstractEntity
         if (null !== $options && count($options)) {
             foreach ($options as $propertyName => $propertyValue) {
                 $this->$propertyName = $propertyValue;
+            }
         }
         return $this;
     }
