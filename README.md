@@ -1,4 +1,4 @@
 NinjaServiceLayer
 -----------------
 
-This is a ZF2 module that will provide a service layer with Doctrine2 support.
+A ZF2 module which provides a base for a service layer with Doctrine2.
