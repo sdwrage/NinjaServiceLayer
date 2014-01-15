@@ -21,6 +21,16 @@ namespace NinjaServiceLayer\Entity;
  */
 class AbstractEntity
 {
+    /**
+     * ID
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @var int The ID.
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer", unique=true)
+     */
+    protected $id;
 
     /**
      * __construct
@@ -90,6 +100,34 @@ class AbstractEntity
             foreach ($options as $propertyName => $propertyValue) {
                 $this->$propertyName = $propertyValue;
         }
+        return $this;
+    }
+
+    /**
+     * Get ID
+     *
+     * Gets the ID.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @return int The ID.
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set ID
+     *
+     * Sets the ID.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @param int $id The ID.
+     * @return self Returns itself to allow for method chaining.
+     */
+    public function setId($id)
+    {
+        $this->id = (int)$id;
         return $this;
     }
 }
