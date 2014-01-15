@@ -96,7 +96,7 @@ class AbstractEntity
      */
     public function setOptions(array $options = null)
     {
-        if (null !== $options && count($options) {
+        if (null !== $options && count($options)) {
             foreach ($options as $propertyName => $propertyValue) {
                 $this->$propertyName = $propertyValue;
         }
