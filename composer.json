@@ -1,19 +1,19 @@
 {
     "name": "ddelrio1986/ninja-service-layer",
-    "description": "This is a ZF2 module that will provide a service layer with Doctrine2 support.",
+    "description": "A ZF2 module which provides a base for a service layer with Doctrine2.",
     "type": "library",
     "homepage": "https://github.com/ddelrio1986/NinjaServiceLayer",
     "license": "MIT",
     "authors": [
         {
             "name": "Daniel Del Rio",
-            "email": "jesusfreakdelrio@gmail.com",
+            "email": "ddelrio1986@gmail.com",
             "homepage": "https://github.com/ddelrio1986",
             "role": "Developer"
         }
     ],
     "support": {
-        "email": "jesusfreakdelrio@gmail.com",
+        "email": "ddelrio1986@gmail.com",
         "issues": "https://github.com/ddelrio1986/NinjaServiceLayer/issues",
         "wiki": "https://github.com/ddelrio1986/NinjaServiceLayer/wiki",
         "source": "https://github.com/ddelrio1986/NinjaServiceLayer"
@@ -21,7 +21,6 @@
     "keywords": [
         "zf2",
         "doctrine2",
-        "scaffold"
     ],
     "autoload": {
         "psr-0": {
@@ -32,8 +31,12 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "dev-master",
-        "doctrine/doctrine-orm-module": "dev-master",
-        "beberlei/DoctrineExtensions": "dev-master"
+        "zendframework/zendframework": ">=2.3.*",
+        "doctrine/doctrine-orm-module": ">=0.8.*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
     }
 }
