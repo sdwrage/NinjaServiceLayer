@@ -2,7 +2,7 @@
 /**
  * Abstract Entity
  *
- * A base class for all entities.
+ * Base class for entities.
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
@@ -14,7 +14,7 @@ namespace NinjaServiceLayer\Entity;
 /**
  * Abstract Entity
  *
- * A base class for all entities.
+ * Base class for entities.
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
@@ -23,23 +23,24 @@ class AbstractEntity
 {
 
     /**
-     * Constructor
+     * __construct
      *
-     * Will store the provided options to properties if possible.
+     * Stores provided options to properties.
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @param null|array $options An array of options that should be stored to properties. The key should be the name of the property and the value should be the value to set the property to.
+     * @param null|array $options The options to store.
      */
-    public function __construct($options = array())
+    public function __construct(array $options = null)
     {
-        $this->setOptions($options);
+        if (null !== $options && count($options) {
+            $this->setOptions($options);
+        }
     }
 
     /**
-     * Magic Getter
+     * __get
      *
-     * Allows you access a protected and private properties as if they were public. This ensures that the getter for the
-     * property is always used just incase anthing needs to be done like lazy-loading.
+     * Allows getting of protected properties.
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @throws \Exception If property to get doesn't exist.
@@ -51,64 +52,44 @@ class AbstractEntity
         $methodName = 'get' . ucfirst($propertyName);
         if (method_exists($this, $methodName)) {
             return $this->$methodName();
-        } else {
-            throw new \Exception('Attempting to get an invalid property.');
         }
+        throw new \Exception('Property does not exist.');
     }
 
     /**
-     * Magic Setter
+     * __set
      *
-     * Allows you to store values to the protected properties of this entity as if they were public. This will actually
-     * use a setter allowing us to perform any needed actions on the value before storing it.
+     * Allows setting of protected properties.
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @throws \Exception If property to set doesn't exist.
      * @param string $propertyName The name of the property to set.
      * @param mixed $propertyValue The value to set to the property.
-     * @return self Returns itself to allow for a fluent interface.
      */
     public function __set($propertyName, $propertyValue)
     {
         $methodName = 'set' . ucfirst($propertyName);
-        if (method_exists($this, $methodName)) {
-            $this->$methodName($propertyValue);
-            return $this;
-        } else {
-            throw new \Exception('Attempting to set an invalid property.');
+        if (!method_exists($this, $methodName)) {
+            throw new \Exception('Property does not exist.');
         }
+        $this->$methodName($propertyValue);
     }
 
     /**
      * Set Options
      *
-     * Will store the provided options to properties if possible.
+     * Stores provided options to properties.
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @param null|array $options An array of options that should be stored to properties. The key should be the name of the property and the value should be the value to set the property to.
+     * @param null|array $options The options to store.
      * @return self Returns itself to allow for method chaining.
      */
-    public function setOptions($options = array())
+    public function setOptions(array $options = null)
     {
-        foreach ($options as $propertyName => $propertyValue) {
-            $methodName = 'set' . ucfirst($propertyName);
-            if (method_exists($this, $methodName)) {
-                $this->$methodName($propertyValue);
-            }
+        if (null !== $options && count($options) {
+            foreach ($options as $propertyName => $propertyValue) {
+                $this->$propertyName = $propertyValue;
         }
         return $this;
-    }
-
-    /**
-     * Get Array Copy
-     *
-     * Get an array representation of this instance.
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @return array An array representation of this instance.
-     */
-    public function getArrayCopy()
-    {
-        return get_object_vars($this);
     }
 }
