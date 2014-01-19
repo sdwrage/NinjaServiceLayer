@@ -11,7 +11,7 @@
 
 namespace NinjaServiceLayer\EntityRepository;
 
-use NinjaServiceLayer\Entity\AbstractNeverDeletedEntity;
+use NinjaServiceLayer\Entity\AbstractEntity;
 
 /**
  * Abstract Never Deleted Entity Repository
@@ -30,10 +30,10 @@ abstract class AbstractNeverDeletedEntityRepository extends AbstractEntityReposi
      * Deletes the provided entity.
      *
      * @author Daniel Del Rio <daniel@aelarn.com>
-     * @param AbstractNeverDeletedEntity $entity The entity to delete.
+     * @param AbstractEntity $entity The entity to delete.
      * @return self Returns itself to allow for method chaining.
      */
-    public function delete(AbstractNeverDeletedEntity $entity)
+    public function delete(AbstractEntity $entity)
     {
         $entity->setDeleted(true)
             ->setDateModified(new \DateTime());
