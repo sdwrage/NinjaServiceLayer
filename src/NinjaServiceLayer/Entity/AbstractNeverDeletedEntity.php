@@ -11,6 +11,8 @@
 
 namespace NinjaServiceLayer\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Abstract Never Deleted Entity
  *
