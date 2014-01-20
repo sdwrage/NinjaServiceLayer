@@ -11,6 +11,7 @@
 
 namespace NinjaServiceLayer\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,15 +58,15 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
      * Gets the not deleted entities.
      *
      * @author Daniel Del Rio <daniel@aelearn.com>
-     * @param array $entities An array of entities.
-     * @return array The not deleted entities.
+     * @param ArrayCollection $entities A collection of entities.
+     * @return ArrayCollection The not deleted entities.
      */
-    public function getNotDeleted(array $entities = array())
+    public function getNotDeleted(ArrayCollection $entities)
     {
-        $notDeletedEntities = array();
+        $notDeletedEntities = new ArrayCollection();
         foreach ($entities as $entity) {
             if (false === $entity->getDeleted()) {
-                $notDeletedEntities[] = $entity;
+                $notDeletedEntities->add($entity);
             }
         }
         return $notDeletedEntities;
