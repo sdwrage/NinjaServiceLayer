@@ -52,6 +52,26 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
     protected $dateModified;
 
     /**
+     * Get Not Deleted
+     *
+     * Gets the not deleted entities.
+     *
+     * @author Daniel Del Rio <daniel@aelearn.com>
+     * @param array $entities An array of entities.
+     * @return array The not deleted entities.
+     */
+    public function getNotDeleted(array $entities = array())
+    {
+        $notDeletedEntities = array();
+        foreach ($entities as $entity) {
+            if (false === $entity->getDeleted()) {
+                $notDeletedEntities[] = $entity;
+            }
+        }
+        return $notDeletedEntities;
+    }
+
+    /**
      * Get Deleted
      *
      * Gets whether or not entity is deleted.
