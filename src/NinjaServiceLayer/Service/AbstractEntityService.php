@@ -58,6 +58,50 @@ abstract class AbstractEntityService
     }
 
     /**
+     * Delete
+     *
+     * Deletes the entity provided.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @param AbstractEntity $entity The entity to delete.
+     * @return self Returns itself to allow for method chaining.
+     */
+    public function delete(AbstractEntity $entity)
+    {
+        $this->entityManager->getRepository($this->entity)->delete($entity);
+        return $this;
+    }
+
+    /**
+     * Delete By ID
+     *
+     * Deletes the entity with the ID provided.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @param int $id The ID of the entity to delete.
+     * @return self Returns itself to allow for method chaining.
+     */
+    public function deleteById($id)
+    {
+        $this->entityManager->getRepository($this->entity)->deleteById($id);
+        return $this;
+    }
+
+    /**
+     * Find
+     *
+     * Gets the entity with the provided ID.
+     *
+     * @author Daniel Del Rio <daniel@aelearn.com>
+     * @param int $id The ID of the entity to get.
+     * @return AbstractEntity The entity.
+     */
+    public function find($id)
+    {
+        return $this->entityManager->getRepository($this->entity)->find($id);
+    }
+
+    /**
      * Get New Entity
      *
      * Gets a new entity for use.
