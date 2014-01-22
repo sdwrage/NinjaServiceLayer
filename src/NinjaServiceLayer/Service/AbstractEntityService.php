@@ -21,9 +21,8 @@ use NinjaServiceLayer\Entity\AbstractEntity;
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Service
- * @filesource
  */
-class AbstractEntityService
+abstract class AbstractEntityService
 {
 
     /**
