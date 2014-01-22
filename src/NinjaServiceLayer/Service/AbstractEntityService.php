@@ -92,7 +92,7 @@ abstract class AbstractEntityService
      *
      * Gets the entity with the provided ID.
      *
-     * @author Daniel Del Rio <daniel@aelearn.com>
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param int $id The ID of the entity to get.
      * @return AbstractEntity The entity.
      */
