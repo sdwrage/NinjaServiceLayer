@@ -13,6 +13,7 @@ namespace NinjaServiceLayer\Service;
 
 use Doctrine\ORM\EntityManager;
 use NinjaServiceLayer\Entity\AbstractEntity;
+use NinjaServiceLayer\Entity\Factory\FactoryInterface as EntityFactory;
 
 /**
  * Abstract Entity Service
@@ -24,6 +25,14 @@ use NinjaServiceLayer\Entity\AbstractEntity;
  */
 abstract class AbstractEntityService
 {
+
+    /**
+     * Entity Factory
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @var EntityFactory The entity factory.
+     */
+    protected $entityFactory;
 
     /**
      * Entity Manager
@@ -39,11 +48,26 @@ abstract class AbstractEntityService
      * Stores dependencies to properties.
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @param EntityFactory $entityFactory The entity factory for the entity that this entity service mainly works with.
      * @param EntityManager $entityManager The doctrine entity manager.
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityFactory $entityFactory, EntityManager $entityManager)
     {
+        $this->entityFactory = $entityFactory;
         $this->entityManager = $entityManager;
+    }
+
+    /**
+     * Get New Entity
+     *
+     * Gets a new entity for use.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @return AbstractEntity The new entity.
+     */
+    public function getNewEntity()
+    {
+        return $this->entityFactory->createEntity();
     }
 
     /**

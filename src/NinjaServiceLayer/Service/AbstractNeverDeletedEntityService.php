@@ -25,6 +25,23 @@ abstract class AbstractNeverDeletedEntityService extends AbstractEntityService
 {
 
     /**
+     * Get New Entity
+     *
+     * Gets a new entity.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @return AbstractEntity The new entity.
+     */
+    public function getNewEntity()
+    {
+        $entity = parent::getNewEntity();
+        $entity->setDateAdded(new \DateTime())
+            ->setDateModified(new \DateTime())
+            ->setDeleted(false);
+        return $entity;
+    }
+
+    /**
      * Persist
      *
      * Saves the entity provided.
