@@ -9,7 +9,7 @@
  * @filesource
  */
 
-namespace NinjaServiceLayer\Entity\Factory
+namespace NinjaServiceLayer\Entity\Factory;
 
 use NinjaServiceLayer\Entity\AbstractEntity;
 
