@@ -12,6 +12,7 @@
 namespace NinjaServiceLayer\Service;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use NinjaServiceLayer\Entity\AbstractEntity;
 use NinjaServiceLayer\Entity\Factory\FactoryInterface as EntityFactory;
 
@@ -43,6 +44,14 @@ abstract class AbstractEntityService
     protected $entityManager;
 
     /**
+     * Entity Repository
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @var EntityRepository The entity repository for the entity that this service mainly works with.
+     */
+    protected $entityRepository;
+
+    /**
      * __construct
      *
      * Stores dependencies to properties.
@@ -55,6 +64,7 @@ abstract class AbstractEntityService
     {
         $this->entityFactory = $entityFactory;
         $this->entityManager = $entityManager;
+        $this->entityRepository = $this->entityManager->getRepository($this->entity);
     }
 
     /**
@@ -99,6 +109,19 @@ abstract class AbstractEntityService
     public function find($id)
     {
         return $this->entityManager->getRepository($this->entity)->find($id);
+    }
+
+    /**
+     * Get Entity Repository
+     *
+     * Gets the entity repository.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @return EntityRepository The entity repository.
+     */
+    public function getEntityRepository()
+    {
+        return $this->entityRepository;
     }
 
     /**
