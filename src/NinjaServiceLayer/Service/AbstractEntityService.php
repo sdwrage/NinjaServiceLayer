@@ -112,6 +112,19 @@ abstract class AbstractEntityService
     }
 
     /**
+     * Get Entity Factory
+     *
+     * Gets the entity factory for the entity that this service mainly works with.
+     *
+     * @author Daniel Del Rio <ddelrio1986@gmail.com>
+     * @return EntityFactory The entity factory for the entity that this service mainly works with.
+     */
+    public function getEntityFactory()
+    {
+        return $this->entityFactory;
+    }
+
+    /**
      * Get Entity Repository
      *
      * Gets the entity repository.
