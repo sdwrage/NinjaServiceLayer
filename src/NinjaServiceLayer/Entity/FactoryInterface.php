@@ -5,11 +5,11 @@
  * Interface that entity factories must implement.
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
- * @package NinjaServiceLayer\Entity\Factory
+ * @package NinjaServiceLayer\Entity
  * @filesource
  */
 
-namespace NinjaServiceLayer\Entity\Factory;
+namespace NinjaServiceLayer\Entity;
 
 use NinjaServiceLayer\Entity\AbstractEntity;
 
@@ -19,7 +19,7 @@ use NinjaServiceLayer\Entity\AbstractEntity;
  * Interface that entity factories must implement.
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
- * @package NinjaServiceLayer\Entity\Factory
+ * @package NinjaServiceLayer\Entity
  */
 interface FactoryInterface
 {
