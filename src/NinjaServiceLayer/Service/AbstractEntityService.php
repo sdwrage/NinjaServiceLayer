@@ -12,9 +12,7 @@
 namespace NinjaServiceLayer\Service;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
 use NinjaServiceLayer\Entity\AbstractEntity;
-use NinjaServiceLayer\Entity\Factory\FactoryInterface as EntityFactory;
 
 /**
  * Abstract Entity Service
@@ -28,14 +26,6 @@ abstract class AbstractEntityService
 {
 
     /**
-     * Entity Factory
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @var EntityFactory The entity factory.
-     */
-    protected $entityFactory;
-
-    /**
      * Entity Manager
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
@@ -44,53 +34,16 @@ abstract class AbstractEntityService
     protected $entityManager;
 
     /**
-     * Entity Repository
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @var EntityRepository The entity repository for the entity that this service mainly works with.
-     */
-    protected $entityRepository;
-
-    /**
      * __construct
      *
      * Stores dependencies to properties.
      *
      * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @param EntityFactory $entityFactory The entity factory for the entity that this entity service mainly works with.
      * @param EntityManager $entityManager The doctrine entity manager.
      */
-    public function __construct(EntityFactory $entityFactory, EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->entityFactory = $entityFactory;
         $this->entityManager = $entityManager;
-        $this->entityRepository = $this->entityManager->getRepository($this->entity);
-    }
-
-    /**
-     * Get Entity Factory
-     *
-     * Gets the entity factory for the entity that this service mainly works with.
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @return EntityFactory The entity factory for the entity that this service mainly works with.
-     */
-    public function getEntityFactory()
-    {
-        return $this->entityFactory;
-    }
-
-    /**
-     * Get Entity Repository
-     *
-     * Gets the entity repository.
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @return EntityRepository The entity repository.
-     */
-    public function getEntityRepository()
-    {
-        return $this->entityRepository;
     }
 
     /**
