@@ -94,19 +94,6 @@ abstract class AbstractEntityService
     }
 
     /**
-     * Get New Entity
-     *
-     * Gets a new entity for use.
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @return AbstractEntity The new entity.
-     */
-    public function getNewEntity()
-    {
-        return $this->entityFactory->createEntity();
-    }
-
-    /**
      * Persist
      *
      * Saves the provided entity.
