@@ -1,8 +1,8 @@
 <?php
 /**
- * Abstract Entity Service
+ * Abstract Service
  *
- * Base service that services which mainly work with one entity (AKA an entity service) should be based off of.
+ * Base for all services that provides the entity manager.
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Service
@@ -15,14 +15,14 @@ use Doctrine\ORM\EntityManager;
 use NinjaServiceLayer\Entity\AbstractEntity;
 
 /**
- * Abstract Entity Service
+ * Abstract Service
  *
- * Base service that services which mainly work with one entity (AKA an entity service) should be based off of.
+ * Base for all services that provides the entity manager.
  *
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Service
  */
-abstract class AbstractEntityService
+abstract class AbstractService
 {
 
     /**
