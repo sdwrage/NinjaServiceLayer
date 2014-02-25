@@ -11,6 +11,8 @@
 
 namespace NinjaServiceLayer\EntityRepository;
 
+use NinjaServiceLayer\Entity\AbstractEntity;
+
 /**
  * Abstract Never Deleted Entity Repository
  * 
