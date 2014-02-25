@@ -23,38 +23,19 @@ abstract class AbstractNeverDeletedEntityRepository extends AbstractEntityReposi
 {
 
     /**
-     * Delete By ID
+     * Delete
      *
-     * Deletes the entity with the specified ID.
+     * Deletes the provided entity.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @throws \Exception If invalid ID provided.
-     * @param int $id The ID.
+     * @author Daniel Del Rio <daniel@aelarn.com>
+     * @param AbstractEntity $entity The entity to delete.
      * @return self Returns itself to allow for method chaining.
      */
-    public function deleteById($id)
+    public function delete(AbstractEntity $entity)
     {
-
-        // Cleanse parameter.
-        $id = (int)$id;
-        if (0 === $id) {
-            throw new \Exception('Invalid ID provided.');
-        }
-
-        // Delete the entity.
-        $qb = $this->_em->createQueryBuilder();
-        $qb->update($this->_entityName, 'e')
-            ->set('e.deleted', ':deleted')
-            ->set('e.dateModified', ':dateModified')
-            ->where($qb->expr()->eq('e.id', ':id'))
-            ->setParameters(
-                array(
-                    'deleted' => 1,
-                    'dateModified' => date('Y-m-d H:i:s'),
-                    'id' => $id,
-                )
-            );
-        $qb->getQuery()->getResult();
+        $entity->setDeleted(true);
+        $this->_em->persist($entity);
+        $this->_em->flush();
         return $this;
     }
 }

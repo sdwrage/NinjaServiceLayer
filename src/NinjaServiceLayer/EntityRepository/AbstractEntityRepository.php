@@ -36,7 +36,9 @@ class AbstractEntityRepository extends EntityRepository
      */
     public function delete(AbstractEntity $entity)
     {
-        return $this->deleteById($entity->getId());
+        $this->_em->remove($entity);
+        $this->_em->flush();
+        return $this;
     }
 
     /**
@@ -59,11 +61,8 @@ class AbstractEntityRepository extends EntityRepository
         }
 
         // Delete the entity.
-        $qb = $this->_em->createQueryBuilder();
-        $qb->delete($this->_entityName, 'e')
-            ->where($qb->expr()->eq('e.id', ':id'))
-            ->setParameter('id', $id);
-        $qb->getQuery()->getResult();
+        $entity = $this->find($id);
+        $this->delete($entity);
         return $this;
     }
 }
