@@ -32,8 +32,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "2.2.6",
-        "doctrine/doctrine-orm-module": "0.8.0",
+        "zendframework/zendframework": "2.2.*",
+        "doctrine/doctrine-orm-module": "0.8.*",
         "beberlei/DoctrineExtensions": "v0.1"
     }
 }
