@@ -11,6 +11,8 @@
 
 namespace NinjaServiceLayer\Service;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
 use NinjaServiceLayer\Entity\AbstractEntity;
 
@@ -44,6 +46,26 @@ abstract class AbstractService
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
+    }
+
+    /**
+     * Get Not Deleted
+     *
+     * Gets the not deleted entities.
+     *
+     * @author Daniel Del Rio <daniel@aelearn.com>
+     * @param Collection $entities A collection of entities.
+     * @return ArrayCollection The not deleted entities.
+     */
+    public function getNotDeleted(Collection $entities)
+    {
+        $notDeletedEntities = new ArrayCollection();
+        foreach ($entities as $entity) {
+            if (false === $entity->getDeleted()) {
+                $notDeletedEntities->add($entity);
+            }
+        }
+        return $notDeletedEntities;
     }
 
     /**
