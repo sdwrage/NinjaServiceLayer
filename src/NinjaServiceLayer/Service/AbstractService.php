@@ -54,10 +54,10 @@ abstract class AbstractService
      * Gets the not deleted entities.
      *
      * @author Daniel Del Rio <daniel@aelearn.com>
-     * @param Collection $entities A collection of entities.
+     * @param Collection|array $entities A collection of entities.
      * @return ArrayCollection The not deleted entities.
      */
-    public function getNotDeleted(Collection $entities)
+    public function getNotDeleted($entities)
     {
         $notDeletedEntities = new ArrayCollection();
         foreach ($entities as $entity) {
