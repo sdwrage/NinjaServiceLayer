@@ -4,7 +4,6 @@
  *
  * Base class for entities.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
  * @filesource
  */
@@ -18,28 +17,16 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * Base class for entities.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
  */
 class AbstractEntity
 {
-    /**
-     * ID
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @var int The ID.
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer", unique=true)
-     */
-    protected $id;
 
     /**
      * __construct
      *
      * Stores provided options to properties.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param null|array $options The options to store.
      */
     public function __construct(array $options = null)
@@ -54,7 +41,6 @@ class AbstractEntity
      *
      * Allows getting of protected properties.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @throws \Exception If property to get doesn't exist.
      * @param string $propertyName The name of the property to get.
      * @return mixed The value of the property.
@@ -73,7 +59,6 @@ class AbstractEntity
      *
      * Allows setting of protected properties.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @throws \Exception If property to set doesn't exist.
      * @param string $propertyName The name of the property to set.
      * @param mixed $propertyValue The value to set to the property.
@@ -92,7 +77,6 @@ class AbstractEntity
      *
      * Stores provided options to properties.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param null|array $options The options to store.
      * @return self Returns itself to allow for method chaining.
      */
@@ -103,34 +87,6 @@ class AbstractEntity
                 $this->$propertyName = $propertyValue;
             }
         }
-        return $this;
-    }
-
-    /**
-     * Get ID
-     *
-     * Gets the ID.
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @return int The ID.
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set ID
-     *
-     * Sets the ID.
-     *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
-     * @param int $id The ID.
-     * @return self Returns itself to allow for method chaining.
-     */
-    public function setId($id)
-    {
-        $this->id = (int)$id;
         return $this;
     }
 }

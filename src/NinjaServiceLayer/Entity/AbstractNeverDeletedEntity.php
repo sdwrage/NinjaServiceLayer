@@ -4,7 +4,6 @@
  *
  * Base class for entities that are never deleted.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
  * @filesource
  */
@@ -20,16 +19,14 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * Base class for entities that are never deleted.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
  */
-abstract class AbstractNeverDeletedEntity extends AbstractEntity
+abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
 {
 
     /**
      * Deleted
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @var bool Whether or not entity is deleted.
      * @ORM\Column(type="boolean")
      */
@@ -38,7 +35,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
     /**
      * Date Added
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @var \DateTime Date the entity was added.
      * @ORM\Column(type="datetime", name="date_added")
      */
@@ -47,7 +43,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
     /**
      * Date Modified
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @var \DateTime Date the entity was last modified.
      * @ORM\Column(type="datetime", name="date_modified")
      */
@@ -58,7 +53,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
      *
      * Gets the not deleted entities.
      *
-     * @author Daniel Del Rio <daniel@aelearn.com>
      * @param Collection $entities A collection of entities.
      * @return ArrayCollection The not deleted entities.
      */
@@ -78,7 +72,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
      *
      * Gets whether or not entity is deleted.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @return bool Whether or not entity is deleted.
      */
     public function getDeleted()
@@ -91,7 +84,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
      *
      * Sets whether or not entity is deleted.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param bool $deleted Whether or not entity is deleted.
      * @return self Returns itself to allow for method chaining.
      */
@@ -106,7 +98,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
      *
      * Gets the date the entity was added.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @return \DateTime The date the entity was added.
      */
     public function getDateAdded()
@@ -119,7 +110,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
      *
      * Sets the date the entity was added.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param \DateTime $dateAdded The date the entity was added.
      * @return self Returns itself to allow for method chaining.
      */
@@ -137,7 +127,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
      *
      * Gets the date the entity was last modified.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @return \DateTime The date the entity was last modified.
      */
     public function getDateModified()
@@ -150,7 +139,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractEntity
      *
      * Sets the date the entity was last modified.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param \DateTime $dateModified The date the entity was last modified.
      * @return self Returns itself to allow for method chaining.
      */
