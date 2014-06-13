@@ -1,6 +1,6 @@
 {
     "name": "ddelrio1986/ninja-service-layer",
-    "description": "A ZF2 module which provides a base for a service layer with Doctrine2.",
+    "description": "A ZF2 module which allows the easy creation of a service layer using Doctrine2.",
     "type": "library",
     "homepage": "https://github.com/ddelrio1986/NinjaServiceLayer",
     "license": "MIT",
@@ -32,10 +32,5 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": ">=2.2.5",
         "doctrine/doctrine-orm-module": ">=0.8"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0-dev"
-        }
     }
 }
