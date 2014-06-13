@@ -1,5 +1,9 @@
 <?php
 
+namespace NinjaServiceLayerTest\Entity;
+
+use PHPUnit_Framework_TestCase;
+
 class AbstractEntityTest extends PHPUnit_Framework_TestCase
 {
 	public function testConstructorCallsSetOptions()
