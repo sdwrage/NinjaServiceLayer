@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @package NinjaServiceLayer\Entity
  */
-class AbstractEntity
+abstract class AbstractEntity
 {
 
     /**

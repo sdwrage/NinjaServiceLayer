@@ -22,7 +22,7 @@ use NinjaServiceLayer\Entity\AbstractEntity;
  * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\EntityRepository
  */
-class AbstractEntityRepository extends EntityRepository
+abstract class AbstractEntityRepository extends EntityRepository
 {
 
     /**
