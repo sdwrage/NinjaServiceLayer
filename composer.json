@@ -25,7 +25,8 @@
     "autoload": {
         "psr-0": {
             "NinjaServiceLayer\\": "src/",
-            "NinjaServiceLayerTest\\": "tests/"
+            "NinjaServiceLayerTest\\": "tests/",
+            "Doctrine\\Tests\\": "vendor/doctrine/orm/tests/"
         }
     },
     "minimum-stability": "dev",
