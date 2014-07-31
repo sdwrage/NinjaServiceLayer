@@ -4,7 +4,6 @@
  *
  * Base entity repository for entity repositories for never deleted entities.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\EntityRepository
  * @filesource
  */
@@ -15,10 +14,9 @@ use NinjaServiceLayer\Entity\AbstractEntity;
 
 /**
  * Abstract Never Deleted Entity Repository
- * 
+ *
  * Base entity repository for entity repositories for never deleted entities.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\EntityRepository
  */
 abstract class AbstractNeverDeletedEntityRepository extends AbstractEntityRepository
@@ -29,7 +27,6 @@ abstract class AbstractNeverDeletedEntityRepository extends AbstractEntityReposi
      *
      * Deletes the provided entity.
      *
-     * @author Daniel Del Rio <daniel@aelarn.com>
      * @param AbstractEntity $entity The entity to delete.
      * @return self Returns itself to allow for method chaining.
      */

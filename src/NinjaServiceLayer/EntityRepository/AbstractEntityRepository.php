@@ -4,7 +4,6 @@
  *
  * Base for entity repositories.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\EntityRepository
  * @filesource
  */
@@ -19,7 +18,6 @@ use NinjaServiceLayer\Entity\AbstractEntity;
  *
  * Base for entity repositories.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\EntityRepository
  */
 abstract class AbstractEntityRepository extends EntityRepository
@@ -30,7 +28,6 @@ abstract class AbstractEntityRepository extends EntityRepository
      *
      * Deletes the provided entity.
      *
-     * @author Daniel Del Rio <daniel@aelarn.com>
      * @param AbstractEntity $entity The entity to delete.
      * @return self Returns itself to allow for method chaining.
      */
@@ -46,7 +43,6 @@ abstract class AbstractEntityRepository extends EntityRepository
      *
      * Deletes the entity with the specified ID.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @throws \Exception If invalid ID provided.
      * @param int $id The ID.
      * @return self Returns itself to allow for method chaining.

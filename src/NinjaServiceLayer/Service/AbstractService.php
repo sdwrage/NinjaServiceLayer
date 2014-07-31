@@ -4,7 +4,6 @@
  *
  * Base for all services that provides the entity manager.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Service
  * @filesource
  */
@@ -21,7 +20,6 @@ use NinjaServiceLayer\Entity\AbstractEntity;
  *
  * Base for all services that provides the entity manager.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Service
  */
 abstract class AbstractService
@@ -30,7 +28,6 @@ abstract class AbstractService
     /**
      * Entity Manager
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @var EntityManager The doctrine entity manager.
      */
     protected $entityManager;
@@ -40,7 +37,6 @@ abstract class AbstractService
      *
      * Stores dependencies to properties.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param EntityManager $entityManager The doctrine entity manager.
      */
     public function __construct(EntityManager $entityManager)
@@ -53,7 +49,6 @@ abstract class AbstractService
      *
      * Gets the not deleted entities.
      *
-     * @author Daniel Del Rio <daniel@aelearn.com>
      * @param Collection|array $entities A collection of entities.
      * @return ArrayCollection The not deleted entities.
      */
@@ -73,7 +68,6 @@ abstract class AbstractService
      *
      * Saves the provided entity.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @param AbstractEntity $entity The entity to save.
      * @return self Returns itself to allow for method chaining.
      */

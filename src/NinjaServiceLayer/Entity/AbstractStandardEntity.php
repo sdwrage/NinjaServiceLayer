@@ -25,11 +25,27 @@ abstract class AbstractStandardEntity extends AbstractEntity
      * ID
      *
      * @var int The ID.
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, unique=true, options={"unsigned"=true})
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer", unique=true)
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
+
+    /**
+     * Set ID
+     *
+     * Sets the ID.
+     *
+     * @param int $id The ID.
+     * @return AbstractStandardEntity Returns itself to allow for method chaining.
+     */
+     public function setId($id)
+     {
+         $this->id = (int)$id;
+         return $this;
+     }
+
 
     /**
      * Get ID
@@ -41,19 +57,5 @@ abstract class AbstractStandardEntity extends AbstractEntity
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set ID
-     *
-     * Sets the ID.
-     *
-     * @param int $id The ID.
-     * @return self Returns itself to allow for method chaining.
-     */
-    public function setId($id)
-    {
-        $this->id = (int)$id;
-        return $this;
     }
 }

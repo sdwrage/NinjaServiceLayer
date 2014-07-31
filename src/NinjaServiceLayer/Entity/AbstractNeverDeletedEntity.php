@@ -28,7 +28,8 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
      * Deleted
      *
      * @var bool Whether or not entity is deleted.
-     * @ORM\Column(type="boolean")
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=false)
      */
     protected $deleted = false;
 
@@ -36,7 +37,8 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
      * Date Added
      *
      * @var \DateTime Date the entity was added.
-     * @ORM\Column(type="datetime", name="date_added")
+     *
+     * @ORM\Column(type="datetime", name="date_added", nullable=false)
      */
     protected $dateAdded;
 
@@ -44,7 +46,8 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
      * Date Modified
      *
      * @var \DateTime Date the entity was last modified.
-     * @ORM\Column(type="datetime", name="date_modified")
+     *
+     * @ORM\Column(type="datetime", name="date_modified", nullable=false)
      */
     protected $dateModified;
 
@@ -68,18 +71,6 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
     }
 
     /**
-     * Get Deleted
-     *
-     * Gets whether or not entity is deleted.
-     *
-     * @return bool Whether or not entity is deleted.
-     */
-    public function getDeleted()
-    {
-        return $this->deleted;
-    }
-
-    /**
      * Set Deleted
      *
      * Sets whether or not entity is deleted.
@@ -94,15 +85,15 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
     }
 
     /**
-     * Get Date Added
+     * Get Deleted
      *
-     * Gets the date the entity was added.
+     * Gets whether or not entity is deleted.
      *
-     * @return \DateTime The date the entity was added.
+     * @return bool Whether or not entity is deleted.
      */
-    public function getDateAdded()
+    public function getDeleted()
     {
-        return $this->dateAdded;
+        return $this->deleted;
     }
 
     /**
@@ -123,15 +114,15 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
     }
 
     /**
-     * Get Date Modified
+     * Get Date Added
      *
-     * Gets the date the entity was last modified.
+     * Gets the date the entity was added.
      *
-     * @return \DateTime The date the entity was last modified.
+     * @return \DateTime The date the entity was added.
      */
-    public function getDateModified()
+    public function getDateAdded()
     {
-        return $this->dateModified;
+        return $this->dateAdded;
     }
 
     /**
@@ -149,5 +140,17 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
         }
         $this->dateModified = $dateModified;
         return $this;
+    }
+
+    /**
+     * Get Date Modified
+     *
+     * Gets the date the entity was last modified.
+     *
+     * @return \DateTime The date the entity was last modified.
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
     }
 }

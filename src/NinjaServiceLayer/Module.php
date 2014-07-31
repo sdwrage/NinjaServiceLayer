@@ -4,7 +4,6 @@
  *
  * This is the module class for the NinjaServiceLayer module.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer
  */
 
@@ -15,7 +14,6 @@ namespace NinjaServiceLayer;
  *
  * This is the module class for the NinjaServiceLayer module.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer
  */
 class Module
@@ -26,7 +24,6 @@ class Module
      *
      * Get the autoloader configuration for this module.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @return array The autoloader configuration for this module.
      */
     public function getAutoloaderConfig()
@@ -45,7 +42,6 @@ class Module
      *
      * Get the configuration for this module.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @return array The configuration for this module.
      */
     public function getConfig()
