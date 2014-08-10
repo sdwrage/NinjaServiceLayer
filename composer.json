@@ -28,9 +28,10 @@
             "NinjaServiceLayerTest\\": "tests/"
         }
     },
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": ">=2.2.5",
-        "doctrine/doctrine-orm-module": ">=0.8"
+        "zendframework/zendframework": "~2.2.5",
+        "doctrine/doctrine-orm-module": "~0.8.0"
     }
 }
