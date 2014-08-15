@@ -49,26 +49,6 @@ abstract class AbstractService
     }
 
     /**
-     * Get Not Deleted
-     *
-     * Gets the not deleted entities.
-     *
-     * @author Daniel Del Rio <daniel@aelearn.com>
-     * @param Collection|array $entities A collection of entities.
-     * @return ArrayCollection The not deleted entities.
-     */
-    public function getNotDeleted($entities)
-    {
-        $notDeletedEntities = new ArrayCollection();
-        foreach ($entities as $entity) {
-            if (false === $entity->getDeleted()) {
-                $notDeletedEntities->add($entity);
-            }
-        }
-        return $notDeletedEntities;
-    }
-
-    /**
      * Persist
      *
      * Saves the provided entity.
