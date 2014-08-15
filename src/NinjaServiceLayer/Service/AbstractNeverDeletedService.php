@@ -33,7 +33,7 @@ abstract class AbstractNeverDeletedService extends AbstractService
      * @param Collection|array $entities A collection of entities.
      * @return ArrayCollection The not deleted entities.
      */
-    public function extractNotDeleted($entities)
+    public static function extractNotDeleted($entities)
     {
         $notDeletedEntities = new ArrayCollection();
         foreach ($entities as $entity) {
