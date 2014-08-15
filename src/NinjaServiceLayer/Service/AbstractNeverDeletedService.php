@@ -13,6 +13,7 @@ namespace NinjaServiceLayer\Service;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
+use InvalidArgumentException;
 use NinjaServiceLayer\Entity\AbstractEntity;
 
 /**
@@ -42,5 +43,24 @@ abstract class AbstractNeverDeletedService extends AbstractService
             }
         }
         return $notDeletedEntities;
+    }
+
+    /**
+     * Get Not Deleted
+     *
+     * Gets the not deleted for the specified entity.
+     *
+     * @param string $entity The entity.
+     * @return array The not deleted for the specified entity.
+     */
+    public function getNotDeleted($entity)
+    {
+        $entity = trim((string)$entity);
+        if ('' === $entity) {
+            throw new InvalidArgumentException('An invalid entity was provided.');
+        }
+
+        $repository = $this->getEntityManager()->getRepository($entity);
+        return $repository->getNotDeleted();
     }
 }
