@@ -37,4 +37,16 @@ abstract class AbstractNeverDeletedEntityRepository extends AbstractEntityReposi
         $this->_em->flush();
         return $this;
     }
+
+    /**
+     * Get Not Deleted
+     *
+     * Gets the not deleted entities.
+     *
+     * @return array The not deleted entities.
+     */
+    public function getNotDeleted()
+    {
+        return $this->findBy(array('deleted' => 0));
+    }
 }
