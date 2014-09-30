@@ -59,7 +59,7 @@ abstract class AbstractNeverDeletedService extends AbstractService
             throw new InvalidArgumentException('An invalid entity was provided.');
         }
 
-        $repository = $this->getEntityManager()->getRepository($entity);
+        $repository = $this->entityManager->getRepository($entity);
         return $repository->getNotDeleted();
     }
 }
