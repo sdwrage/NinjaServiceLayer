@@ -11,6 +11,7 @@
 namespace NinjaServiceLayer\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 /**
  * Abstract Entity
@@ -41,7 +42,7 @@ class AbstractEntity
      *
      * Allows getting of protected properties.
      *
-     * @throws \Exception If property to get doesn't exist.
+     * @throws Exception If property to get doesn't exist.
      * @param string $propertyName The name of the property to get.
      * @return mixed The value of the property.
      */
@@ -51,7 +52,7 @@ class AbstractEntity
         if (method_exists($this, $methodName)) {
             return $this->$methodName();
         }
-        throw new \Exception('Property does not exist.');
+        throw new Exception('Property does not exist.');
     }
 
     /**
@@ -59,7 +60,7 @@ class AbstractEntity
      *
      * Allows setting of protected properties.
      *
-     * @throws \Exception If property to set doesn't exist.
+     * @throws Exception If property to set doesn't exist.
      * @param string $propertyName The name of the property to set.
      * @param mixed $propertyValue The value to set to the property.
      */
@@ -67,7 +68,7 @@ class AbstractEntity
     {
         $methodName = 'set' . ucfirst($propertyName);
         if (!method_exists($this, $methodName)) {
-            throw new \Exception('Property does not exist.');
+            throw new Exception('Property does not exist.');
         }
         $this->$methodName($propertyValue);
     }

@@ -10,6 +10,7 @@
 
 namespace NinjaServiceLayer\Service;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
@@ -61,5 +62,21 @@ abstract class AbstractNeverDeletedService extends AbstractService
 
         $repository = $this->entityManager->getRepository($entity);
         return $repository->getNotDeleted();
+    }
+
+    /**
+     * Persist
+     *
+     * Saves the provided entity.
+     *
+     * @param AbstractEntity $entity The entity to save.
+     * @return self Returns itself to allow for method chaining.
+     */
+    public function persist(AbstractEntity $entity)
+    {
+        $entity->setDateModified(new DateTime);
+        $this->entityManager->persist($entity);
+        $this->entityManager->flush();
+        return $this;
     }
 }

@@ -4,7 +4,6 @@
  *
  * Interface that entity factories must implement.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
  * @filesource
  */
@@ -18,7 +17,6 @@ use NinjaServiceLayer\Entity\AbstractEntity;
  *
  * Interface that entity factories must implement.
  *
- * @author Daniel Del Rio <ddelrio1986@gmail.com>
  * @package NinjaServiceLayer\Entity
  */
 interface FactoryInterface
@@ -29,7 +27,6 @@ interface FactoryInterface
      *
      * Creates the entity.
      *
-     * @author Daniel Del Rio <ddelrio1986@gmail.com>
      * @return AbstractEntity The entity.
      */
     public function createEntity();

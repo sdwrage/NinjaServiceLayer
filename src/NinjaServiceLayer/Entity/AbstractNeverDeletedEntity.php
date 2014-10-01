@@ -10,6 +10,7 @@
 
 namespace NinjaServiceLayer\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -79,7 +80,7 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
      *
      * Gets the date the entity was added.
      *
-     * @return \DateTime The date the entity was added.
+     * @return DateTime The date the entity was added.
      */
     public function getDateAdded()
     {
@@ -91,13 +92,13 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
      *
      * Sets the date the entity was added.
      *
-     * @param \DateTime $dateAdded The date the entity was added.
+     * @param DateTime $dateAdded The date the entity was added.
      * @return self Returns itself to allow for method chaining.
      */
-    public function setDateAdded(\DateTime $dateAdded = null)
+    public function setDateAdded(DateTime $dateAdded = null)
     {
         if (null === $dateAdded) {
-            $dateAdded = new \DateTime();
+            $dateAdded = new DateTime;
         }
         $this->dateAdded = $dateAdded;
         return $this;
@@ -108,7 +109,7 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
      *
      * Gets the date the entity was last modified.
      *
-     * @return \DateTime The date the entity was last modified.
+     * @return DateTime The date the entity was last modified.
      */
     public function getDateModified()
     {
@@ -120,13 +121,13 @@ abstract class AbstractNeverDeletedEntity extends AbstractStandardEntity
      *
      * Sets the date the entity was last modified.
      *
-     * @param \DateTime $dateModified The date the entity was last modified.
+     * @param DateTime $dateModified The date the entity was last modified.
      * @return self Returns itself to allow for method chaining.
      */
-    public function setDateModified(\DateTime $dateModified = null)
+    public function setDateModified(DateTime $dateModified = null)
     {
         if (null === $dateModified) {
-            $dateModified = new \DateTime();
+            $dateModified = new DateTime;
         }
         $this->dateModified = $dateModified;
         return $this;
