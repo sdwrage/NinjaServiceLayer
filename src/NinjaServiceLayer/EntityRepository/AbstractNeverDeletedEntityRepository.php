@@ -35,7 +35,7 @@ abstract class AbstractNeverDeletedEntityRepository extends AbstractEntityReposi
     public function delete(AbstractEntity $entity)
     {
         $entity->setDeleted(true)
-            ->setDateModifed(new DateTime);
+            ->setDateModified(new DateTime);
         $this->_em->persist($entity);
         $this->_em->flush();
         return $this;
