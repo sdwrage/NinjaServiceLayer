@@ -22,12 +22,12 @@ use NinjaServiceLayer\Entity\AbstractEntity;
 interface FactoryInterface
 {
 
-    /**
-     * Create Entity
-     *
-     * Creates the entity.
-     *
-     * @return AbstractEntity The entity.
-     */
-    public function createEntity();
+  /**
+   * Create Entity
+   *
+   * Creates the entity.
+   *
+   * @return AbstractEntity The entity.
+   */
+  public function createEntity();
 }

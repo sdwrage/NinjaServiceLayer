@@ -6,63 +6,63 @@ use PHPUnit_Framework_TestCase;
 
 class AbstractEntityTest extends PHPUnit_Framework_TestCase
 {
-	public function testConstructorCallsSetOptions()
-	{
-		$stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
+  public function testConstructorCallsSetOptions()
+  {
+    $stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
 
-		$this->setExpectedException('Exception', 'Property does not exist.');
+    $this->setExpectedException('Exception', 'Property does not exist.');
 
-		$stub->__construct(array('test' => 'test'));
-	}
+    $stub->__construct(array('test' => 'test'));
+  }
 
-	public function testConstructorDoesNotCallSetOptions()
-	{
-		$stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
+  public function testConstructorDoesNotCallSetOptions()
+  {
+    $stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
 
-		$stub->expects($this->exactly(0))
-			->method('setOptions');
+    $stub->expects($this->exactly(0))
+      ->method('setOptions');
 
-		$stub->__construct();
-		$stub->__construct(null);
-		$stub->__construct(array());
-	}
+    $stub->__construct();
+    $stub->__construct(null);
+    $stub->__construct(array());
+  }
 
-	public function testThatGetMagicMethodIsCalled()
-	{
-		$stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
+  public function testThatGetMagicMethodIsCalled()
+  {
+    $stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
 
-		$this->setExpectedException('Exception', 'Property does not exist.');
+    $this->setExpectedException('Exception', 'Property does not exist.');
 
-		$stub->test;
-	}
+    $stub->test;
+  }
 
-	public function testThatSetMagicMethodIsCalled()
-	{
-		$stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
+  public function testThatSetMagicMethodIsCalled()
+  {
+    $stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
 
-		$this->setExpectedException('Exception', 'Property does not exist.');
+    $this->setExpectedException('Exception', 'Property does not exist.');
 
-		$stub->test = 'test';
-	}
+    $stub->test = 'test';
+  }
 
-	public function testSetOptionsTriesToSetProperties()
-	{
-		$stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
+  public function testSetOptionsTriesToSetProperties()
+  {
+    $stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
 
-		$this->setExpectedException('Exception', 'Property does not exist.');
+    $this->setExpectedException('Exception', 'Property does not exist.');
 
-		$stub->setOptions(array('test' => 'test'));
-	}
+    $stub->setOptions(array('test' => 'test'));
+  }
 
-	public function testSetopOptionsDoesNotTryToSetProperties()
-	{
-		$stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
-		
-		$stub->expects($this->exactly(0))
-			->method('__set');
+  public function testSetopOptionsDoesNotTryToSetProperties()
+  {
+    $stub = $this->getMockForAbstractClass('NinjaServiceLayer\Entity\AbstractEntity');
 
-		$stub->setOptions();
-		$stub->setOptions(null);
-		$stub->setOptions(array());
-	}
+    $stub->expects($this->exactly(0))
+      ->method('__set');
+
+    $stub->setOptions();
+    $stub->setOptions(null);
+    $stub->setOptions(array());
+  }
 }

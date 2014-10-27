@@ -10,9 +10,7 @@
 
 namespace NinjaServiceLayer\Service;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectManager as EntityManager;
 use NinjaServiceLayer\Entity\AbstractEntity;
 
 /**
@@ -25,37 +23,37 @@ use NinjaServiceLayer\Entity\AbstractEntity;
 abstract class AbstractService
 {
 
-    /**
-     * Entity Manager
-     *
-     * @var EntityManager The doctrine entity manager.
-     */
-    protected $entityManager;
+  /**
+   * Entity Manager
+   *
+   * @var EntityManager The doctrine entity manager.
+   */
+  protected $entityManager;
 
-    /**
-     * __construct
-     *
-     * Stores dependencies to properties.
-     *
-     * @param EntityManager $entityManager The doctrine entity manager.
-     */
-    public function __construct(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
+  /**
+   * __construct
+   *
+   * Stores injected dependencies to properties.
+   *
+   * @param EntityManager $entityManager The doctrine entity manager.
+   */
+  public function __construct(EntityManager $entityManager)
+  {
+    $this->entityManager = $entityManager;
+  }
 
-    /**
-     * Persist
-     *
-     * Saves the provided entity.
-     *
-     * @param AbstractEntity $entity The entity to save.
-     * @return self Returns itself to allow for method chaining.
-     */
-    public function persist(AbstractEntity $entity)
-    {
-        $this->entityManager->persist($entity);
-        $this->entityManager->flush();
-        return $this;
-    }
+  /**
+   * Persist
+   *
+   * Saves the provided entity.
+   *
+   * @param AbstractEntity $entity The entity to save.
+   * @return self Returns itself to allow for method chaining.
+   */
+  public function persist(AbstractEntity $entity)
+  {
+    $this->entityManager->persist($entity);
+    $this->entityManager->flush();
+    return $this;
+  }
 }
