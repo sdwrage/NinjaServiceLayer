@@ -1,5 +1,6 @@
+.buildpath
+.project
+.settings
+.DS_Store
+.idea
 *.swp
-phpunit.xml
-composer.lock
-composer.phar
-/vendor/
